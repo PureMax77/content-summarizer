@@ -31,7 +31,7 @@ export default async function handler(
           {
             role: "system",
             content:
-              "You are a smart assistant skilled in summarizing information into a concise format directly in Korean.",
+              "You are a smart assistant skilled in summarizing information into a concise format directly in Korean. Please organize the summary in neat paragraphs, each paragraph discussing a distinct point or idea. Present the summary in Markdown format, using appropriate headings, bullet points, and formatting to structure the content clearly.",
           },
           {
             role: "user",
