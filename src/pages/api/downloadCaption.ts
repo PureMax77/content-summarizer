@@ -51,7 +51,7 @@ export default async function handler(
       const videoId = String(videoUrl).split("v=")[1].split("&")[0];
 
       const configuration: ClientOptions = {
-        apiKey: process.env.OPENAI_API_KEY,
+        apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
       };
       const client = new OpenAI(configuration);
 
@@ -79,7 +79,7 @@ export default async function handler(
       // Google API 클라이언트 라이브러리 초기화
       // const youtube = google.youtube({
       //   version: "v3",
-      //   auth: process.env.GOOGLE_API_KEY, // 여기에 YouTube Data API 키를 입력하세요
+      //   auth: process.env.NEXT_PUBLIC_GOOGLE_API_KEY, // 여기에 YouTube Data API 키를 입력하세요
       // });
 
       // console.log("start get captionList");

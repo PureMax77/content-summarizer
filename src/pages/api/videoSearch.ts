@@ -15,7 +15,7 @@ export default async function handler(
     return res.status(400).json({ error: "keyword is required" });
   }
 
-  const YOUTUBE_API_KEY = process.env.GOOGLE_API_KEY; // 환경변수에서 API 키를 가져옵니다.
+  const YOUTUBE_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_API_KEY; // 환경변수에서 API 키를 가져옵니다.
   const YOUTUBE_API_URL = `https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=10&q=${encodeURIComponent(
     keyword as string
   )}&key=${YOUTUBE_API_KEY}`;
