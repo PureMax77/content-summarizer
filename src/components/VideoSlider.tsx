@@ -5,9 +5,11 @@ import "slick-carousel/slick/slick-theme.css";
 import YouTube, { YouTubeProps } from "react-youtube";
 import { VideoType } from "./VideoSearcher";
 import { Button } from "@nextui-org/react";
+import { YouTubeWatchURL } from "@/constants/common";
 
 type VideoSlierProps = {
   videos: VideoType[];
+  onSummarize: Function;
 };
 
 const sliderSettings = {
@@ -18,7 +20,7 @@ const sliderSettings = {
   slidesToScroll: 3,
 };
 
-const VideoSlider: React.FC<VideoSlierProps> = ({ videos }) => {
+const VideoSlider: React.FC<VideoSlierProps> = ({ videos, onSummarize }) => {
   const threeVideos = videos.slice(0, 3);
 
   const onPlayerReady: YouTubeProps["onReady"] = (event) => {
@@ -35,10 +37,6 @@ const VideoSlider: React.FC<VideoSlierProps> = ({ videos }) => {
     },
   };
 
-  const onSummary = (videoId: string) => {
-    console.log(123, videoId);
-  };
-
   return (
     <div className="flex flex-row my-5">
       {threeVideos.map((video, index) => (
@@ -53,7 +51,7 @@ const VideoSlider: React.FC<VideoSlierProps> = ({ videos }) => {
           <Button
             color="primary"
             variant="bordered"
-            onPress={(e) => onSummary(video.videoId)}
+            onPress={(e) => onSummarize(YouTubeWatchURL + video.videoId)}
           >
             요약하기
           </Button>

@@ -10,7 +10,7 @@ import { Readable } from "stream";
 import axios from "axios";
 import FormData from "form-data";
 import ffmpeg from "fluent-ffmpeg";
-import { Mp3FileName } from "@/constants/name";
+import { Mp3FileName } from "@/constants/common";
 
 type Data = {
   filename?: string;

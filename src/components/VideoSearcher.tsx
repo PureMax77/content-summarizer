@@ -6,9 +6,11 @@ export type VideoType = {
   videoId: string;
 };
 
-type VideoSearcherProps = {};
+type VideoSearcherProps = {
+  onSummarize: Function;
+};
 
-const VideoSearcher: React.FC<VideoSearcherProps> = ({}) => {
+const VideoSearcher: React.FC<VideoSearcherProps> = ({ onSummarize }) => {
   const [keyword, setKeyword] = useState<string>("BlockChain");
   const [videos, setVideos] = useState<VideoType[]>([]);
 
@@ -50,7 +52,9 @@ const VideoSearcher: React.FC<VideoSearcherProps> = ({}) => {
           size="lg"
         />
       </form>
-      {videos.length > 0 && <VideoSlider videos={videos} />}
+      {videos.length > 0 && (
+        <VideoSlider videos={videos} onSummarize={onSummarize} />
+      )}
     </div>
   );
 };
