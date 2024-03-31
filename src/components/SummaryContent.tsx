@@ -13,7 +13,7 @@ const SummaryContent: React.FC<SummaryContentProps> = ({
   return (
     <>
       {loadingMsg && (
-        <div className="flex flex-row my-5">
+        <div className="flex justify-center items-center flex-row my-5 w-full">
           <div className="flex justify-center items-center mr-3">
             {loadingMsg}
           </div>
@@ -21,7 +21,10 @@ const SummaryContent: React.FC<SummaryContentProps> = ({
         </div>
       )}
       {content && (
-        <div className="summary-content bg-gray-100 p-4 mt-5 rounded-lg shadow">
+        <div
+          id="summary"
+          className="summary-content bg-gray-100 p-4 mt-5 mb-10 rounded-lg shadow"
+        >
           {/* <h2 className="text-lg font-semibold mb-2">요약</h2> */}
           {/* <p className="text-gray-700">{content}</p> */}
           <Markdown>{content}</Markdown>

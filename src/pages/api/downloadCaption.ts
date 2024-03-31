@@ -8,6 +8,7 @@ import { File } from "buffer";
 import FormData from "form-data";
 import ffmpeg from "fluent-ffmpeg";
 import { v4 as uuidv4 } from "uuid";
+import { extractYouTubeVideoID } from "@/function/text";
 
 type Data = {
   filename?: string;
@@ -47,7 +48,9 @@ export default async function handler(
 
     try {
       const { videoUrl } = req.query;
-      const videoId = String(videoUrl).split("v=")[1].split("&")[0];
+
+      const videoId = extractYouTubeVideoID(videoUrl as string);
+      if (!videoId) throw new Error("Not found videoId");
 
       const configuration: ClientOptions = {
         apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,

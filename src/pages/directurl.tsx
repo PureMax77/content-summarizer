@@ -8,7 +8,7 @@ export default function DirectUrl() {
     useSummarize();
 
   const [searchTerm, setSearchTerm] = useState(
-    "https://www.youtube.com/watch?v=TDGq4aeevgY"
+    "https://www.youtube.com/watch?v=fqH-L5Y_iV0"
   );
 
   const handleSearch = async (e: FormEvent) => {

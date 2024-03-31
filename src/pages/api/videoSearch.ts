@@ -16,7 +16,8 @@ export default async function handler(
   }
 
   const YOUTUBE_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_API_KEY; // 환경변수에서 API 키를 가져옵니다.
-  const YOUTUBE_API_URL = `https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=10&q=${encodeURIComponent(
+  // videoUDuration 옵션 : "short" (4분 이하), "medium" (4분에서 20분 사이), 또는 "long" (20분 이상)
+  const YOUTUBE_API_URL = `https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=10&videoDuration=medium&q=${encodeURIComponent(
     keyword as string
   )}&key=${YOUTUBE_API_KEY}`;
 

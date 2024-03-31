@@ -31,11 +31,11 @@ export default async function handler(
           {
             role: "system",
             content:
-              "You are a smart assistant skilled in summarizing information into a concise format directly. Please organize the summary in neat paragraphs, each paragraph discussing a distinct point or idea. Present the summary in Markdown format, using appropriate headings, bullet points, and formatting to structure the content clearly.",
+              "You are a smart assistant skilled in summarizing information into a concise format directly. Please organize the summary in neat paragraphs, including subheadings for each paragraph. Present the summary in Markdown format, using appropriate headings, bullet points.",
           },
           {
             role: "user",
-            content: `Summarize the following text in korean : ${caption}`,
+            content: `I am Korean, so please answer in Korean. Summarize the following text : ${caption}`,
           },
         ],
         temperature: 0.3, // 창의성 표현 0~1

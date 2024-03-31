@@ -10,3 +10,27 @@ export function preprocessMarkdown(markdownText: string): string {
 
   return markdownText;
 }
+
+// 유튜브 videoId 추출
+export function extractYouTubeVideoID(url: string): string | null {
+  try {
+    // URL 객체를 생성합니다.
+    const urlObj = new URL(url);
+
+    // www.youtube.com 형태의 URL 처리
+    if (urlObj.hostname === "www.youtube.com") {
+      return urlObj.searchParams.get("v"); // 'v' 쿼리 파라미터에서 videoID를 가져옵니다.
+    }
+    // youtu.be 형태의 URL 처리
+    else if (urlObj.hostname === "youtu.be") {
+      const pathSegments = urlObj.pathname.split("/");
+      if (pathSegments.length >= 2) {
+        return pathSegments[1]; // 경로의 첫 번째 세그먼트가 videoID입니다.
+      }
+    }
+  } catch (error) {
+    console.error("Error extracting YouTube video ID:", error);
+  }
+
+  return null; // 유효한 videoID를 찾지 못한 경우 null을 반환합니다.
+}
