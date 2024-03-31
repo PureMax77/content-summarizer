@@ -5,12 +5,9 @@ import fs, { createReadStream } from "fs";
 import { getVideoMP3Base64, getVideoMP3Binary } from "yt-get";
 import { FileLikeImpl } from "@/types/audioFile.types";
 import { File } from "buffer";
-import { isFileLike } from "openai/uploads.mjs";
-import { Readable } from "stream";
-import axios from "axios";
 import FormData from "form-data";
 import ffmpeg from "fluent-ffmpeg";
-import { Mp3FileName } from "@/constants/common";
+import { v4 as uuidv4 } from "uuid";
 
 type Data = {
   filename?: string;
@@ -46,6 +43,8 @@ export default async function handler(
   res: NextApiResponse<Data>
 ) {
   if (req.method === "GET") {
+    const uniqueFileName = `./audio/${uuidv4()}.mp3`;
+
     try {
       const { videoUrl } = req.query;
       const videoId = String(videoUrl).split("v=")[1].split("&")[0];
@@ -60,21 +59,24 @@ export default async function handler(
       console.log("start download mp3");
       const { title, mp3 } = await getVideoMP3Binary(newVideoURL);
       // const { base64 } = await getVideoMP3Base64(newVideoURL);
-      // // // 비동기적으로
+
       console.log("start write : " + title);
-      await fs.writeFileSync(Mp3FileName, mp3);
+      await fs.writeFileSync(uniqueFileName, mp3);
 
       // 음질 변경
       // await changeMP3Quality("./output3.mp3", "./output4.mp3", 96);
 
       console.log("start trans");
       const { text } = await client.audio.transcriptions.create({
-        file: fs.createReadStream("./" + Mp3FileName),
+        file: fs.createReadStream("./" + uniqueFileName),
         model: "whisper-1",
       });
       // console.log("success", text); // 변환된 텍스트 출력
 
       // console.log("success", res.response); // 변환된 텍스트 출력
+
+      // 완료된 오디오 파일 삭제
+      await fs.unlinkSync(uniqueFileName);
 
       // Google API 클라이언트 라이브러리 초기화
       // const youtube = google.youtube({
@@ -106,6 +108,10 @@ export default async function handler(
       // 캡션 데이터를 클라이언트로 응답
       res.status(200).json({ caption: text });
     } catch (error) {
+      // 파일이 생성된 경우 삭제
+      const isExist = await fs.existsSync(uniqueFileName);
+      if (isExist) await fs.unlinkSync(uniqueFileName);
+
       console.error(error);
       res.status(500).json({ error: "Internal Server Error" });
     }
