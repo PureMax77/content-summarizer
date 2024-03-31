@@ -16,10 +16,10 @@ export default function Search() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen">
-      <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center">
+    <div className="flex flex-col items-center justify-centern">
+      <main className="flex flex-col items-center justify-center w-full px-5 text-center">
         <VideoSearcher onSummarize={onSummarize} />
-        <div className="flex flex-col max-w-screen-sm w-full">
+        <div className="flex flex-col sm:max-w-screen-lg max-w-screen-sm w-full">
           <SummaryContent loadingMsg={loadingMsg} content={content} />
         </div>
       </main>

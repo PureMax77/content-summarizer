@@ -35,8 +35,8 @@ const VideoSearcher: React.FC<VideoSearcherProps> = ({ onSummarize }) => {
   };
 
   return (
-    <div className=" max-w-screen-sm w-full">
-      <h2 className="mb-5">YouTube List 검색</h2>
+    <div className="sm:max-w-screen-lg max-w-screen-sm w-full">
+      <h2 className="mt-10 mb-5">YouTube 검색</h2>
       <form
         onSubmit={handleSearch}
         className="flex justify-center items-center"
@@ -50,6 +50,7 @@ const VideoSearcher: React.FC<VideoSearcherProps> = ({ onSummarize }) => {
           // placeholder="BlockChain"
           color="primary"
           size="lg"
+          className="w-full sm:w-2/3 md:w-1/2"
         />
       </form>
       {videos.length > 0 && (

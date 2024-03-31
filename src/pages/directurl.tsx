@@ -8,7 +8,7 @@ export default function DirectUrl() {
     useSummarize();
 
   const [searchTerm, setSearchTerm] = useState(
-    "https://www.youtube.com/watch?v=uyuA11PDDHE"
+    "https://www.youtube.com/watch?v=TDGq4aeevgY"
   );
 
   const handleSearch = async (e: FormEvent) => {
@@ -23,11 +23,14 @@ export default function DirectUrl() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen">
-      <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center">
-        <div className="flex flex-col max-w-screen-sm w-full">
-          <h2 className="mt-10 mb-5">YouTube URL 직접 요약</h2>
-          <form onSubmit={handleSearch} className="flex w-full">
+    <div className="flex flex-col items-center justify-center ">
+      <main className="flex flex-col items-center justify-center w-full px-5 text-center">
+        <div className="flex flex-col sm:max-w-screen-lg max-w-screen-sm w-full">
+          <h2 className="mt-10 mb-5">YouTube URL 검색</h2>
+          <form
+            onSubmit={handleSearch}
+            className="flex justify-center items-center w-full"
+          >
             <Input
               type="text"
               value={searchTerm}
@@ -36,6 +39,7 @@ export default function DirectUrl() {
               label="URL Search"
               color="primary"
               size="lg"
+              className="w-full sm:w-2/3 md:w-1/2"
             />
             {/* 버튼은 시각적으로 보여주기 위해 남겨둠. 실제 검색 기능은 폼 제출로 처리 */}
             {/* <button

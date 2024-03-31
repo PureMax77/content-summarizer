@@ -33,14 +33,25 @@ const VideoSlider: React.FC<VideoSlierProps> = ({ videos, onSummarize }) => {
     width: "320",
     playerVars: {
       // https://developers.google.com/youtube/player_parameters
-      autoplay: 1,
+      // autoplay: 1,
     },
   };
 
+  const onSummaryPres = (videoId: string) => {
+    setTimeout(() => {
+      window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: "smooth",
+      });
+    }, 500);
+
+    onSummarize(YouTubeWatchURL + videoId);
+  };
+
   return (
-    <div className="flex flex-row my-5">
+    <div className="flex flex-col md:flex-row justify-center items-center my-5">
       {threeVideos.map((video, index) => (
-        <div key={index} className="mx-3">
+        <div key={index} className="m-3">
           <div className="mb-3">
             <YouTube
               videoId={video.videoId}
@@ -51,7 +62,7 @@ const VideoSlider: React.FC<VideoSlierProps> = ({ videos, onSummarize }) => {
           <Button
             color="primary"
             variant="bordered"
-            onPress={(e) => onSummarize(YouTubeWatchURL + video.videoId)}
+            onPress={(e) => onSummaryPres(video.videoId)}
           >
             요약하기
           </Button>
