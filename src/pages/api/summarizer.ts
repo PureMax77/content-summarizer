@@ -31,11 +31,11 @@ export default async function handler(
           {
             role: "system",
             content:
-              "You are a smart assistant skilled in summarizing information into a concise format directly in Korean. Please organize the summary in neat paragraphs, each paragraph discussing a distinct point or idea. Present the summary in Markdown format, using appropriate headings, bullet points, and formatting to structure the content clearly.",
+              "You are a smart assistant skilled in summarizing information into a concise format directly. Please organize the summary in neat paragraphs, each paragraph discussing a distinct point or idea. Present the summary in Markdown format, using appropriate headings, bullet points, and formatting to structure the content clearly.",
           },
           {
             role: "user",
-            content: `Summarize the following text : ${caption}`,
+            content: `Summarize the following text in korean : ${caption}`,
           },
         ],
         temperature: 0.3, // 창의성 표현 0~1
@@ -46,7 +46,7 @@ export default async function handler(
       });
 
       console.log("Finished Summarize");
-      console.log(completion.choices[0].message);
+      // console.log(completion.choices[0].message);
 
       res
         .status(200)

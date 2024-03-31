@@ -72,7 +72,7 @@ export default async function handler(
         file: fs.createReadStream("./" + Mp3FileName),
         model: "whisper-1",
       });
-      console.log("success", text); // 변환된 텍스트 출력
+      // console.log("success", text); // 변환된 텍스트 출력
 
       // console.log("success", res.response); // 변환된 텍스트 출력
 

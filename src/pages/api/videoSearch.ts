@@ -10,7 +10,7 @@ export default async function handler(
   res: NextApiResponse<Data>
 ) {
   const { keyword } = req.query;
-  console.log(11, keyword);
+  // console.log(11, keyword);
   if (!keyword) {
     return res.status(400).json({ error: "keyword is required" });
   }
