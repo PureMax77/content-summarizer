@@ -36,6 +36,7 @@ export default function useSummarize() {
 
   const getCaptionData = async (searchTerm: string): Promise<string> => {
     setLoadingMsg("자막 데이터 추출 중...");
+    setContent("");
 
     let caption: string = "";
 
@@ -52,5 +53,5 @@ export default function useSummarize() {
     }
   };
 
-  return { getSummarizedText, getCaptionData, content, loadingMsg };
+  return { getSummarizedText, getCaptionData, content, setContent, loadingMsg };
 }
