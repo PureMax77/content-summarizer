@@ -20,7 +20,7 @@ const SummaryContent: React.FC<SummaryContentProps> = ({
           <Spinner size="sm" />
         </div>
       )}
-      {content && (
+      {!loadingMsg && content && (
         <div
           id="summary"
           className="summary-content bg-gray-100 p-4 mt-5 mb-10 rounded-lg shadow"

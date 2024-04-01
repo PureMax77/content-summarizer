@@ -41,13 +41,6 @@ export default function DirectUrl() {
               size="lg"
               className="w-full sm:w-2/3 md:w-1/2"
             />
-            {/* 버튼은 시각적으로 보여주기 위해 남겨둠. 실제 검색 기능은 폼 제출로 처리 */}
-            {/* <button
-            type="submit"
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-r-lg"
-          >
-            검색
-          </button> */}
           </form>
           <SummaryContent loadingMsg={loadingMsg} content={content} />
         </div>
